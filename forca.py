@@ -1,18 +1,24 @@
-def jogar():
+import random
 
+def jogar():
     print("*********************************")
     print("***Bem vindo ao jogo da Forca!***")
     print("*********************************")
 
-    import random
-    import nltk
 
+    arquivo = open("palavras.txt", "r")
+    palavras = []
 
-    palavra_secreta = "japa".upper()
-    letras_acertadas = [ ]
+    for linha in arquivo:
+        linha = linha.strip()
+        palavras.append(linha)
 
-    for letra in palavra_secreta:
-        letras_acertadas.append("_")
+    arquivo.close()
+
+    numero = random.randrange(0,len(palavras))
+    palavra_secreta = palavras[numero].upper()
+
+    letras_acertadas = ["_" for letra in palavra_secreta]
 
     enforcou = False
     acertou = False
@@ -20,30 +26,28 @@ def jogar():
 
     print(letras_acertadas)
 
-    while (not acertou and not enforcou):
+    while(not enforcou and not acertou):
 
         chute = input("Qual letra? ")
         chute = chute.strip().upper()
 
-        if (chute in palavra_secreta):
-            index = 0
-            for letra in palavra_secreta:
-                if (chute == letra):
-                    letras_acertadas[index] = letra
-                index += 1
+        if chute in palavra_secreta:
+            for posicao, letra in enumerate(palavra_secreta):
+                if chute.upper() == letra.upper():
+                    letras_acertadas[posicao] = letra
         else:
             erros += 1
 
-        enforcou = erros == len(letras_acertadas)
+        enforcou = erros == 6
         acertou = "_" not in letras_acertadas
         print(letras_acertadas)
 
+
     if(acertou):
-        print("Você ganhou")
-        print("Fim do jogo")
+        print("Você ganhou!!")
     else:
-        print("Você perdeu")
-        print("Fim do jogo")
+        print("Você perdeu!!")
+    print("Fim do jogo")
 
 if(__name__ == "__main__"):
     jogar()
