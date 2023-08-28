@@ -30,9 +30,7 @@ Por favor, siga as diretrizes de contribuição do projeto e respeite o código 
 
 ## Autores
 
-- [Seu Nome]
-
-##  Mateus Oliveira
+- Mateus Oliveira
 
 Agradeço à comunidade Python por fornecer recursos incríveis e inspiração para criar esses jogos.
 
